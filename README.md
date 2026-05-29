@@ -1,0 +1,1 @@
+# GAMAD Template — Django + PostgreSQL
