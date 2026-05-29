@@ -1,0 +1,15 @@
+{
+  "contract_version": "1.0",
+  "name": "gamad-django",
+  "artifact_type": "docker-compose",
+  "source_ref": { "type": "branch", "value": "main" },
+  "runtime": { "compose_file": "docker-compose.yml", "ports": { "app": 8000 } },
+  "env": [
+    { "name": "DEBUG", "required": false, "secret": false, "default": "0" },
+    { "name": "SECRET_KEY", "required": true, "secret": true },
+    { "name": "ALLOWED_HOSTS", "required": true, "secret": false },
+    { "name": "DATABASE_URL", "required": true, "secret": true }
+  ],
+  "health": { "checks": [{ "name": "api", "path": "/health/", "expected_status": 200, "timeout_s": 30 }] },
+  "policies": { "ban_latest": true, "on_error_stop": true }
+}
